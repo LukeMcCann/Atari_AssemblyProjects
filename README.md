@@ -34,6 +34,12 @@ X86 processor example:
     JMP - jump to another location
     INT - interrupt a process
 
+# Atari System 
+
+    # - defines a literal - e.g. #2
+    $ - defines hexadecimal notation - e.g. $2F
+    % - defines binary notation (dealing with bits) - e.g. %00010011
+
 ----------------------------------------------------
 
 # Binary
