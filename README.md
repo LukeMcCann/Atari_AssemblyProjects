@@ -115,10 +115,10 @@ https://user.xmission.com/~trevin/atari/6502_opcode_table.html
 
 ### First Loop
 
-    LDY #100 ; y = 100
-Loop:
-    DEY ; y--
-    BNE Loop ; repeat until y == 0
+        LDY #100 ; y = 100
+    Loop:
+        DEY ; y--
+        BNE Loop ; repeat until y == 0
 
 ----------------------------------------------------
 
