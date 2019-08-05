@@ -1,7 +1,7 @@
 Atari Assembly projects
 
 #################################
-        Dev: Luke McCann
+            Luke McCann
     The University of Huddersfield
 #################################
 
@@ -170,6 +170,96 @@ write 100 we are saying 1 hundred, 0 tens and 0 ones
 or if we wrote 200 two hundreds, 0 tens and 0 ones
 or 432 four hundreds, 30 tens and 2 ones.
 
+# Base 2 (Binary)
+
+So how do we count in base 2 you ask?
+
+As you can see from the decimal system examples,
+in base 10 we utilise 0 to 9 as out symbols. This
+equates to 10 symbols for use in defining our numbers
+in base 2 we only have two sumbols (1 and 0) as such
+if we want to count in binary we need to utilise the
+same logic on how we represent larger numbers in binary.
+
+                        1's
+                        0
+                        1   
+
+Counting to 1 is easy, we have a bit that can be
+either 0 or 1 therefore we already have our answer.
+As soon as we want to count higher (say simply to 2)
+we need to take positional logic into account and add
+a new column to the left, grouping two bits together
+to be inerpreted as a new number altogether. 
+
+                2's     1's
+                        0
+                        1
+                1       0
+                1       1
+
+As you can see we simply count to the base number
+then add a new positional column to represent the new number,
+in this case it is not representing the number of 10's we have
+but instead the number of 2's, remember that each time we reach
+the limit of how many numbers we can represent in our base count
+we must add a new positonal to represent the next number.
+
+
+        4's     2's     1's
+                        0                 = 0
+                        1                 = 1
+                1       0                 = 2
+                1       1                 = 3
+        1       0       0                 = 4
+
+This works the same for any positional numeric system, you simply 
+need to know the base count to udnerstand how many symbols you have
+before you must add a new positional to represent higher numbers. 
+
+The number of unique values which can be represented in binary
+utilising n bits is equivalent to 2^n. Therefore a 32 bit system
+can represent 2^32 numbers or 4,294,967,296 in total, while a 64
+bit system can represent 2^64 numbers or 18,446,744,073,709,551,616.
+
+It is important to note that a a group of 8 bits is refferred to as a
+byte. Another way to look at this exaple is as such:
+
+
+       128's    64's    32's   16's    8's     4's     2's    1's
+       2^7     2^6     2^5     2^4     2^3     2^2     2^1     2^0
+        0       0       0       1       1       0       1       1
+
+      equivalent to decimal: 27
+      equivalent to Hex: 1B
+
+
+it is important to remember that the rightmost bit is often what we refer to
+as the lSB (Least Significant Bit). This bit has the least impact on the overal
+value whilst the leftmost bit is referred to as the MSB (Most Significant Bit)
+as it holds the highest value.
+
+In converting from binary to decimal we take the bit and multiply them by
+their value.
+
+        1 * 2^0 = 1
+        1 * 2^1 = 2
+        0 * 2^2 = 0
+        1 * 2^3 = 8
+        1 * 2^4 = 16
+
+Once the values are converted you simply sum the numbers together:
+
+        1 + 2 + 0 + 8 + 16 = 27
+
+Remember: leftmost zeros can be dropped as anything multiplied by zero is zero, therefore
+10110 is the same as 00010110.
+
+## Fun Fact
+
+    A theory as to why we divide our days into 24 hours is that Ancient Egyptians liked
+    to count in Base 12 using the joints in their fingers to do so, if you take your
+    thumb and press each joint as you count (where the creases on your fingers are separating) then you can easily count in base 12.
 
 ----------------------------------------------------
 
