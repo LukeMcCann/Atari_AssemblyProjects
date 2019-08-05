@@ -47,6 +47,8 @@ X86 processor example:
 
 # Atari 6502 "Sally" Op-Codes
 
+http://www.6502.org/tutorials/6502opcodes.html
+
 https://user.xmission.com/~trevin/atari/6502_opcode_table.html
 
 # Assembly Code
@@ -55,6 +57,68 @@ https://user.xmission.com/~trevin/atari/6502_opcode_table.html
     STA - Store Accumulator A in [memoryAddress] (e.g. STA $2B) - store A to memory address 2B
     LDX - Load Register X with [value] (e.g. LDX $1234)
     DEX - Decrement X (x--)
+
+---------------------------------------------------
+
+# 6502 Assembly Insturctions
+
+## Load and Store
+
+<!--Load a given value form a register, or Store a value from a register to a memory address-->
+
+    LDA - Load the A register
+    LDX - Load the X register
+    LDY -  Load the Y register
+
+    STA - Store the A register
+    STX - Store the X register
+    STY - Store the Y register
+
+
+## Arithmetic Instructions
+
+<!--in 6502 there are two arithmetic modes, binary and decimal (BCD/Binary Coded Decimal)-->
+
+    ADC - Add to accumulator (with carry)
+    SBC - Subtract from the accumulator (with carry)
+
+    CLC - Clears the carry flag, usually performed before addition
+    SEC - Sets the carry flag, usually performed before subtraction
+
+    INC - Increment memory by one
+    INX - Increment X by one
+    INY - Increment Y by one
+
+    DEC - Decrement memory by one
+    DEX - decrement X by one
+    DEY - decrement Y by one
+
+    (Flag) Z = 1 if result is zero, else 0
+    (Flag) N = 1 if 7 bit (sign) is 1, else 0 
+
+## Jump and Branch Instructions
+
+    JMP - Jump to another location     - GOTO
+
+    BCC - Branch on carry clear        - C == 0
+    BCS - Branch on Carry set          - C == 1
+    BEQ - Branch on equal to zero      - Z == 1
+    BNE - Branch on not equal to zero  - Z == 0
+    BMI - Branch on minus              - N == 1
+    BPL - Branch on plus               - N == 0
+    BVC - Branch on overflow clear     - V == 0
+    BVS - Branch on overflow set       - V == 1
+
+    the final column is equivalent to saying: if(flag == val)
+
+    The branch operations simply jump if the flag value is the same as on the right.
+
+### First Loop
+
+    LDY #100 ; y = 100
+Loop:
+    DEY ; y--
+    BNE Loop ; repeat until y == 0
 
 ----------------------------------------------------
 
