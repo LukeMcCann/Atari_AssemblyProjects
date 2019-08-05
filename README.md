@@ -5,6 +5,7 @@
 #    The University of Huddersfield   #
 #######################################
 
+Download these notes to read them in the correct format.
 
 # Introduction
 
