@@ -60,8 +60,13 @@ https://user.xmission.com/~trevin/atari/6502_opcode_table.html
     DEX - Decrement X (x--)
 
 ---------------------------------------------------
+# VIM 6502 Syntax Highlighting
+
+https://www.vim.org/scripts/script.php?script_id=1314
 
 # 6502 Assembly Instructions
+
+    TXS - Transfer X register to stack pointer register
 
 ## Load and Store
 
@@ -113,6 +118,71 @@ https://user.xmission.com/~trevin/atari/6502_opcode_table.html
     the final column is equivalent to saying: if(flag == val)
 
     The branch operations simply jump if the flag value is the same as on the right.
+
+## Op-code PROCESSOR
+
+Set processor (e.g. PROCESSOR 6502)
+
+## Op-code SEG
+
+Atari Reference:
+"The SEG pseudo-op: Though it is not strictly necessary, all of our code uses it. Without the .U extension, SEG will create binary data for our ROM. With the .U, SEG just allows DASM to populate its symbol table with names/values."
+
+SEG.U Variables: the label "Variables" will appear in our symbol table's segment list
+
+SEG: end of uninitialised segment - start of ROM binary
+
+Define new segment start (e.g. SEG code)
+
+## Op-code ORG
+
+Set the origin of code in memory.
+
+Our code in memory resides in the ROM (read-only memory) space. 
+Data stored here may only be read.
+
+Our code should always start at the default position of $F000 in memory
+
+## Op-code SEI 
+
+Set interrupt code disabled.
+
+## Op-code CLD
+
+Clear decimal mode (disabled BCD (Binary Coded Decimal) decimal math mode)
+
+## Labels
+
+Code in assembly is indented one indentation to the right.
+To place Labels we ignore indentation as such:
+
+    PROCESSOR 6502
+    SEG code
+    ORG $F000
+
+Start:
+
+
+Here "Start" is a Label, labels can be placed at the beginning to a statement, during assemblty the label is assigned
+the current valye of the active location counter and serves as an instruction operand.
+
+Labels can either be symbolic or numeric.
+
+### Symbolic Labels
+
+A symbolic label consists of an identifier followed by a colon. 
+These labels must be defined only once. Symbolic labels have 
+a global scope and appear in the object files symbol table.
+
+
+### Numeric Labels
+
+A numeric label consists of a single digit in the range zero through nine followed by a colon.
+Numeric labels are used only for local reference and are not included in the object files symbol table.
+Numeric labels have limited scope and can therefore be redefined repeatedly.
+
+When a numeric ;label is used as a reference (e.g. as an instruction operand) the suffixes "b" (backward) and "f" (forward)
+should be added to the numeric label. For numeric label N the reference N b referes to the nearest label N defined before the reference, and the reference N f refers to the nearest label N defined after the reference. 
 
 ### First Loop
 
@@ -617,3 +687,15 @@ The 6502 processor is a Little Endian processor, these definitions are to do wit
 storage of data in the processor addresses. As such the order of addresses for the 
 Little Endian structure places the least significant byte before the most significant.
 
+----------------------------------------------------
+
+# src Code Files
+
+## cleanmemory
+
+Goal: clean all the memory addresses from 00 to FF 
+
+How: this file will zero out all of the values in these memory addresses, this will be done using a LOOP
+
+Memory positions 00 to FF are what Atari programmers refer to as "the zero page".
+These addresses hold things such as: RAM memory addressing, TIA register mapping etc...
