@@ -1,9 +1,9 @@
 Atari Assembly projects
 
-#################################
-            Luke McCann
-    The University of Huddersfield
-#################################
+#######################################
+#           Luke McCann               #
+#    The University of Huddersfield   #
+#######################################
 
 
 # Introduction
