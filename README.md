@@ -40,6 +40,22 @@ X86 processor example:
     $ - defines hexadecimal notation - e.g. $2F
     % - defines binary notation (dealing with bits) - e.g. %00010011
 
+# Registers
+
+    A - Accumulator
+
+
+# Atari 6502 "Sally" Op-Codes
+
+https://user.xmission.com/~trevin/atari/6502_opcode_table.html
+
+# Assembly Code
+
+    LDA - Load Accumulator with [value] (e.g. LDA #2)
+    STA - Store Accumulator A in [memoryAddress] (e.g. STA $2B) - store A to memory address 2B
+    LDX - Load Register X with [value] (e.g. LDX $1234)
+    DEX - Decrement X (x--)
+
 ----------------------------------------------------
 
 # Binary
@@ -476,3 +492,63 @@ we have a slight bug, our calculation currently shows 127 + 1 = -128 which is ma
 incorrect. In this case, whenever we change the state of the leftmost bit the processor
 will set the overflow flag to true, telling us a workaround is needed for the calculation
 to be corrected.
+
+----------------------------------------------------
+
+# Assembler
+
+The assembler is a program which is used for writing Assembly code. It acts as an 
+interpreter between assembly code (e.g. LDA #2) and machine code:
+
+     1010 1001 0000 0010   - Machine Code
+
+        A9       02        - Hexadecimal
+
+           LDA #2          - Assembly Code
+
+
+When we write in Assembly code we must then translate our assembly code to machine code.
+The Assembler can almost be likened to a compiler for a higher level language.
+
+The assembler translates our Assembly code: LDA #2
+to the correct hexadecimal or binary bit codes: A9 02  or  1010 1001 0000 0010
+
+
+If we take the following instruction set:
+
+    LDA #2
+    STA $2B
+
+    LDX $1234
+    DEX
+
+we are basically saying:
+
+    Load Accumulator with value Literal 2
+    Store Accumulator A into memory Address hex value 2B
+
+    Load Register X with hex value 1234
+    Decrement X
+
+
+If we were to then pass these instructions through the assembler 
+we would get something like this:
+
+    a9 02
+    85 2b
+
+    ae 34 12
+    ca 
+
+Remember: this is a hexadecimal representation of machine (binary) code. 
+
+You may notice the third instruction has somewhat been inverted, while you
+may have expected the reuslt to be along the lines of "ae 12 34" since our
+command was LDX 1234 not LDX 3412 this is to do with the processors architecture.
+
+The processor orders the architecutre in either a Big Endian or Little Endian structure.
+
+The 6502 processor is a Little Endian processor, these definitions are to do with the 
+storage of data in the processor addresses. As such the order of addresses for the 
+Little Endian structure places the least significant byte before the most significant.
+
