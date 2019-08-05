@@ -1,4 +1,4 @@
-### Atari Assembly projects ###
+### Atari Assembly Projects ###
 
 #######################################
 #           Luke McCann               #
@@ -346,3 +346,133 @@ repelled by the force.
     repel - 1 - on
     attract - 0 - off
 
+----------------------------------------------------
+
+# Hardware
+
+## CPU
+
+The CPU ticks approximately 1.9 milion times per second
+each tick is called a clock cycle or "cpu cycle".
+It is important to remember that our processor works almost
+like an electronic spring unwinding turning gears.
+
+As such a task is performed follow by rest in a different
+state.
+
+## Arithmetic Logic Unit (ALU)
+
+The ALU is a digital circuit used to perform arithmetic
+and logic operations. It represents the fundamental building
+block of a CPU. Modern CPU's contain highly complex and powerful
+ALU's.
+
+Most CPU operations are performed by one more more ALU's which
+load data from input registers, a register is a small amount of storage available as
+part of the CPU. The control unit tells the ALU what operation to perform on
+the data, and the ALU stores the result in a output register, the control unit moves
+data between these registers, the ALU and memory.
+
+## Proceessor Status Register (P Register)
+
+The P Register is a special 8 bit register
+where each bit represents a flag which tells us
+that some operation occurred with the processor.
+
+----------------------------------------------------
+
+# Carry and Overflow
+
+If we ask the ALU to perform the following equation:
+
+    0   1 1 1 1 1 1 1
+  + 0   0 0 0 0 0 0 0 1
+  = 1   0 0 0 0 0 0 0 0
+
+since 1 + 1 = 2 and 2 in binary is 10
+we write down the 0 and carry the 1
+we then perform the next calculation 1 + 1 = 2
+write the zero and carry the one and so forth. 
+
+In this calculation we reach the limit of the 8 bits 
+and carry the 1 to the very end giving the byte 1 extra bit.
+
+Whenever this happens the carry flag is set to 1 showing us
+that a carry ocurred which needs to be handled. 
+
+# Representing Negative Numbers
+
+A number can only be positive or negative. Since this itself
+is also a binary state we only need a single bit to represent
+the sign of a number. We use the left-most bit to tell us the sign
+of the number:
+
+        0 being positive
+        1 being negative
+
+    0 1 1 1 1 1 1 1   = +
+    1 1 1 1 1 1 1 1   = -
+
+The repercussions of this is that we are more limited in the 
+values we can possibly store/represent in 8 bits. 
+
+This means that we can only store half of the original magnitude representing
+numbers from -127 to 127
+
+This simple method is called sign & magnitude, and it does have some issues.
+
+One issue of this system is that there are two different ways to representing 
+zero.
+
+    00000000 = +0
+    10000000 = -0 
+
+virtually no computers use this method anymore due to these complications.
+
+
+# Two's Complement
+
+Two's Complement is a smarter way of representing signed numbers and is the 
+most popular way in which computers store negative values today.
+
+If we look at the original unsigned binary we have the following columns:
+
+        128's    64's    32's    16's    8's    4's    2's    1's
+
+in Two's Complement we simply take the leftmost column and use it to represent the
+number of negative 128's:
+
+        -128's    64's    32's    16's    8's    4's    2's    1's
+
+By storing the number of negative 128's we can represent the maximum number
+of negative values, any values from the right we simply subtract from 128.
+If you want a positive number you simply place a 0 in the -128 column.
+
+In this method there is only one way of representing zero, and it has become
+the most popular method for representing negative numbers in modern computers
+since the days of the Atari itself. 
+
+
+    Examples:
+
+            0   1   1   1   1   1   1   1  = 127 [7F]
+            1   0   0   0   0   0   0   0  = -128 [80]
+
+            1   1   1   1   1   1   1   1  = -1 [FF]
+
+
+## Two's Complement Overflow
+
+If we take the same situation as before in Two's Complement:
+
+    0   1 1 1 1 1 1 1    = 127
+  + 0   0 0 0 0 0 0 1    = 1
+  = 1   0 0 0 0 0 0 0    = -128
+
+While the same thing happens as previously (the calculation is still exactly the same) 
+this method allows for overflow, as we are still only working with 8 bits the calculation
+is able to be performed normally. However, since we are talking about Two's Complement
+we have a slight bug, our calculation currently shows 127 + 1 = -128 which is mathematically
+incorrect. In this case, whenever we change the state of the leftmost bit the processor
+will set the overflow flag to true, telling us a workaround is needed for the calculation
+to be corrected.
