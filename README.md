@@ -60,7 +60,7 @@ https://user.xmission.com/~trevin/atari/6502_opcode_table.html
 
 ---------------------------------------------------
 
-# 6502 Assembly Insturctions
+# 6502 Assembly Instructions
 
 ## Load and Store
 
