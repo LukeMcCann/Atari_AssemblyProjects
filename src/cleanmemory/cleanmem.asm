@@ -18,8 +18,8 @@ Start:
     LDX #$FF ; Counter: X = #$FF
 
 MemLoop:
-    STA $0,X ; Store the value of A register (0) at address $0 + X
     DEX ; x--
+    STA $0,X ; Store the value of A register (0) at address $0 + X
     BNE MemLoop ; Loop until x == 0 (z-Flag set)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
