@@ -825,6 +825,80 @@ Little Endian structure places the least significant byte before the most signif
 
 ----------------------------------------------------
 
+# Memory Map
+
+When we use the phrase "Memory Map" we are referring to the location in address space.
+
+## VCS Bus
+
+In the VCS bus we have three important registers:
+
+    TIA (Television Interface Adapter)
+    PIA (Peripheral Interface Adapter)
+    ROM (Read Only memory) Cartridge
+
+### TIA Register
+
+The TIA can be used to access properties such as background colour, player colour, payfield colour etc...
+
+The PIA is basically our memory (RAM).
+
+Finally, we have the ROM, this is our cartridge in which we have written our instructions.
+
+Within our VCS memory map we have the address registers:
+
+    $00 
+    $01
+    $02
+    .
+    .
+    .
+    $7D
+    $7E
+    $7F
+
+the registers from 00 to 7F are responsible for storing values within the TIA.
+
+e.g. If a value is stored in $09 - this is the register to set the background colour.
+Whenever this address receives a value the TIA register gets the value from the address
+and send the instruction to the television set to execute changing the background colour.
+
+### PIA RAM
+
+The address values:
+
+    $80
+    $81
+    $82
+    .
+    .
+    $FD
+    $FE
+    $FF
+    
+
+are our PIA RAM.
+
+Together the PIA and TIA make up the Zero Page.
+
+### ROM 
+
+We started coding from address $F000 to $FFFF this is our ROM cartridge.
+
+    .
+    .
+    $F000
+    $F001
+    $F002
+    .
+    . 
+    $FFFC   -> this is where we have 2 bytes for our reset vector
+    $FFFD   
+    $FFFE   -> this is where we have the 2 bytes for break interruption
+    $FFFF
+
+----------------------------------------------------
+
 # src Code Files
 
 ## cleanmemory
