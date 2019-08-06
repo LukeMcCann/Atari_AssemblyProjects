@@ -27,4 +27,4 @@ MemLoop:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     ORG $FFFC 
     .word Start ; reset vector at $FFFC (where program starts)
-    .word Start  ; interrupt vecotr at $FFFE
+    .word Start  ; interrupt vector at $FFFE

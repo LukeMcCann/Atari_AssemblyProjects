@@ -1,0 +1,87 @@
+Program:	DASM.EXE V1.1
+
+Release date:	December 13, 1997
+
+Author:		John Wilson <wilson@dbit.com>
+
+Description:	DASM is a simple disassembler for Z-80, 8051, 8080/8085, or
+		8086 binary files.  The file base address may be anywhere in 64
+		KB so ROM images may be disassembled as easily as .COM files.
+		The disassembler performs an execution trace before generating
+		output to put labels in the right places as much as possible,
+		and it tries to distinguish code from data, but it is possible
+		for it to fool itself by making symbol table entries for
+		addresses that are really indices.  A mechanism is provided for
+		feeding the disassembler a file containing a list of entry
+		points at which to begin the execution trace, so after each
+		disassembly you can inspect the output and add addresses from
+		any newly discovered jump tables, dispatch tables, computed
+		jumps etc. to the file so the next disassembly will be closer
+		to complete.
+
+		Ideally the disassembler would figure out these things itself
+		but that would require very sophisticated tracing of register
+		contents which would make the disassembler several orders of
+		magnitude more complicated.  For now it simply performs a "dry
+		run" disassembly starting at each entry point specified, adding
+		each jump (or call) target to the symbol table, recursing for
+		both paths when it reaches a CALL or conditional jump
+		instruction, and stopping when it reaches a halt or
+		unconditional return instruction, or a label that it's been to
+		before (so it won't get caught in loops).  Then a linear
+		disassembly is done starting at the specified starting address,
+		producing labels and code or data depending on the type of
+		access that created the symbol table entry for the most recent
+		label.
+
+Command line:	DASM [filename[.COM]] [/switches]
+
+		The "filename" parameter is the name of the binary file, with a
+		default extension of ".COM".  The output file has the same name
+		but with the extension changed to ".ASM" (which better not have
+		been the input file's extension!).  If no filename is
+		specified, standard input and output are used.
+
+		The switches are all optional and must start with the current
+		DOS SWITCHAR, which is "/" by default.  They are:
+
+		/S:hhhh
+		Sets the address where disassembly starts (beginning of file by
+		default).
+
+		/E:hhhh
+		Sets the address where disassembly ends (end of file by
+		default).
+
+		/F:hhhh
+		Sets the file's load address (0100 by default), i.e. defines
+		the relationship between file addresses and memory addresses.
+
+		/T:hhhh
+		Sets the transfer address where the trace begins (0100 by
+		default).
+
+		/T:@file
+		Gives the name of a file containing a list of hex entry
+		addresses separated by white space and/or <CRLF> pairs.  If an
+		address has a '#' suffix then it is entered in the symbol table
+		as a "data" address.  Otherwise it is entered as a "code"
+		address (i.e. jump target) and an execution trace is begun at
+		that address.
+
+		/C:xxxx
+		Specifies which CPU's mnemonics are to be used for disassembly:
+
+		/C:8051 Intel MCS-51 mnemonics
+		/C:8080	Intel MCS-80/MCS-85 mnemonics (syn. /I)
+		/C:8086	Intel iAPX-86 (etc.) mnemonics (syn. /N)
+		/C:Z80	Zilog Z-80 mnemonics
+
+Copyright:	This program is copyright (C) 1995, 1997 by John Wilson.  All
+		rights reserved.  The program may be freely distributed
+		provided that no charge is made for distribution, and that
+		proper credit is given to John Wilson in all copies, whether
+		modified or not.
+
+		All trademarks referenced are used for identification purposes
+		only and are the property of their respective owners.

@@ -7,6 +7,89 @@
 
 Download these notes to read them in the correct format.
 
+---------------------------------------------------
+
+# Project Requirements:
+
+    DASM - https://sourceforge.net/projects/dasm-dillon/
+    DASM Docs - http://www.expertsetup.net/~brian/dasm/index.html
+    Stella - https://stella-emu.github.io/
+
+    This project requires an Assembler to compile code and an Atari emulator 
+    to run the projects. I am using the Stella Emulator and DASM to create the
+    project, I have included the version of DASM in the ProjectRelatedFiles/DASM
+    folder along with instructions on compiling 6502 assembly language. 
+
+---------------------------------------------------
+
+# Assembling .asm Code to .bin 
+
+To assemble the .asm files you must first unzip DASM. 
+
+Once unzipped you can run dasm from the command line or linux terminal:
+
+## Linux: 
+
+    unzip dasm-version.zip
+    rm dasm.exe && rm dasm.Darwin.X86
+    mv dasm.Linux.X86 dasm
+    sudo cp dasm /usr/local/bin
+
+    cd into the asm code directory.
+
+    Assemble the asm file in dasm:
+
+        dasm file.asm -f3 -v0 -ofile.bin
+
+    Change file permissions:
+
+        chmod 755 cart.bin
+
+## Windows:
+
+    Unzip the dasm file using your preferred unzipper.
+
+    Or
+
+    If you have java installed run: jar xf dasm-verson.zip
+
+    Edit your system environment variables and add the file "dasm.exe" to your system PATH (you can run it without doing so but this way is easier as it allows you to run dasm from anywhere).
+
+    assemble the .asm files using dasm:
+
+        dasm file.asm -f3 -v0 -ofilename 
+
+    Note: if this results in an error it may be because you have added the .bin extension
+    to get around this use the command as stated above and add the .bin extension afterwards.
+
+    Finally set permissions of the file(right click -> properties -> security) to allow the
+    user and system to rwx and the group and other to rx.
+
+
+IMPORTANT NOTE: You will not be able to run this binary like a normal bin file (double clicking or ./cart.bin). Remember these files are written for a 6502 processor not the Intel or AMD x86/x64 processor you are likely using in your machine. This cart.bin file does not have the machine code relevant to these modern processors, it has the machine code specific to the 6502/6507 processor from the Atari. 
+
+---------------------------------------------------
+
+### Editing Environment Variables (Windows 10)
+
+Control Panel -> Search(Environment Variables) -> Select change system variables -> Select system PATH -> add new to Path
+
+-> Paste path to dasm file and select OK -> restart powershell or cmd.
+
+## DASM
+
+Input dasm to find a list of commands.
+
+    The F3 flag tells the assembler the version to use
+    f3 = 6502/6507
+
+    The o flag tells the assembler the output we want, no space is needed
+    between the flag and the name of the file.
+
+    v0 sets verbose mode to minimal (errors only)
+
+---------------------------------------------------
+
 # Introduction
 
 Assembly Language is a low-level programming language
@@ -45,6 +128,7 @@ X86 processor example:
 
     A - Accumulator
 
+---------------------------------------------------
 
 # Atari 6502 "Sally" Op-Codes
 
@@ -60,6 +144,7 @@ https://user.xmission.com/~trevin/atari/6502_opcode_table.html
     DEX - Decrement X (x--)
 
 ---------------------------------------------------
+
 # VIM 6502 Syntax Highlighting
 
 https://www.vim.org/scripts/script.php?script_id=1314
