@@ -1,4 +1,11 @@
-### Atari Assembly Projects ###
+#################################
+#### Atari Assembly Projects ####
+### 6502/6507 Specific Assembly ###
+###################################
+
+---------------------------------------------------
+
+# Author
 
 #######################################
 #           Luke McCann               #
@@ -17,8 +24,8 @@ Download these notes to read them in the correct format.
 
     This project requires an Assembler to compile code and an Atari emulator 
     to run the projects. I am using the Stella Emulator and DASM to create the
-    project, I have included the version of DASM in the ProjectRelatedFiles/DASM
-    folder along with instructions on compiling 6502 assembly language. 
+    project, I have included the version of DASM (and a Stella.exe) in the 
+    ProjectRelatedFiles folder read on for assistance in assembling 6502 assembly.
 
 ---------------------------------------------------
 
