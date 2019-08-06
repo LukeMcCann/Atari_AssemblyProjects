@@ -28,7 +28,6 @@ Download these notes to read them in the correct format.
     setting up DASM and Stella, alternatively you may use the online IDE from 8-bit
     workshop.
 
-
 # Project Requirements:
 
     DASM - https://sourceforge.net/projects/dasm-dillon/
@@ -44,6 +43,11 @@ Download these notes to read them in the correct format.
 
     8-Bit Workshop Broswer-Based IDE - https://8bitworkshop.com/v3.3.0/?=&platform=vcs&file=examples%2Fhello
     JavAtari Browser-Based Emulator - https://javatari.org/
+
+# Useful Links
+
+    Munsie (DASM) - https://github.com/munsie/dasm
+    Colour Palette - https://en.wikipedia.org/wiki/List_of_video_game_console_palettes
 
 ---------------------------------------------------
 
@@ -909,6 +913,22 @@ We started coding from address $F000 to $FFFF this is our ROM cartridge.
     $FFFD   
     $FFFE   -> this is where we have the 2 bytes for break interruption
     $FFFF
+
+----------------------------------------------------
+
+# Header Files
+
+To prevent having to remember register addresses from the top of your head
+there is a helper file included (vcs.h). Inside this file are several
+useful definitions of memory addresses.
+
+This file gives unique names to the memory addresses to make
+them more human-readable and easier to remember. This is 
+the equivalent of assigning the addresses and alias to
+refer to it by.
+
+There is also a macro.h file which contains some useful macros
+to make building applications in assembly easier. 
 
 ----------------------------------------------------
 
