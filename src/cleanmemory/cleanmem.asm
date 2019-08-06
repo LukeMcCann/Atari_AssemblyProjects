@@ -16,6 +16,7 @@ Start:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
     LDA #0  ; A = 0
     LDX #$FF ; Counter: X = #$FF
+    STA $FF ; make sure ff is zeroed before start loop
 
 MemLoop:
     DEX ; x--
