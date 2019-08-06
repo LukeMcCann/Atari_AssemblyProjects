@@ -27,12 +27,23 @@ Download these notes to read them in the correct format.
     project, I have included the version of DASM (and a Stella.exe) in the 
     ProjectRelatedFiles folder read on for assistance in assembling 6502 assembly.
 
+## Running Binaries on Stella
+
+    1. Assemble the .asm files to binaries (See Assembling .asm code to .bin).
+    
+    2. Run Stella Emulator
+
+    3. Double click the Binary you wish to run
+
+    Note: Right clicking empty space in stella allows you to show all files or only show viable ROM files.
+
+    You may also select the window and press the "`" key to enable Stella's debugger.
+
 ---------------------------------------------------
 
 # Assembling .asm Code to .bin 
 
 To assemble the .asm files you must first unzip DASM. 
-
 Once unzipped you can run dasm from the command line or linux terminal:
 
 ## Linux: 
@@ -94,6 +105,20 @@ Input dasm to find a list of commands.
     between the flag and the name of the file.
 
     v0 sets verbose mode to minimal (errors only)
+
+---------------------------------------------------
+
+# Running Stella Emulator
+
+## Linux
+
+Run Stella from the Linux terminal:
+    
+    Stella
+
+## Windows 
+
+Run the file by clicking the created sortcut or application.exe in the installed location.
 
 ---------------------------------------------------
 
@@ -719,6 +744,18 @@ we have a slight bug, our calculation currently shows 127 + 1 = -128 which is ma
 incorrect. In this case, whenever we change the state of the leftmost bit the processor
 will set the overflow flag to true, telling us a workaround is needed for the calculation
 to be corrected.
+
+----------------------------------------------------
+
+# Processor Register
+
+    PC - Program Counter
+    SP - Stack Pointer
+    A - Register A (Accumulator)
+    X - Register X
+    Y - Register Y
+
+    PS - Processor Status Flags
 
 ----------------------------------------------------
 
