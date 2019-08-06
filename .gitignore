@@ -19,7 +19,7 @@
 *.exe
 *.out
 *.app
-*.bin
+
 
 # Exceptions
 !Stella-6.0.1-x64.exe

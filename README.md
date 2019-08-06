@@ -16,6 +16,19 @@ Download these notes to read them in the correct format.
 
 ---------------------------------------------------
 
+# If You Want To Simply Run My Files
+
+    The easiest method for running my 6502/6507 binaries is via the browser based Atari Emulator.
+    (see Alternative methods - JavAtari).
+
+    Simply fork this project -> head over the the JavAtari URL -> select Open ROM File
+    and select the binary you wish to run.
+
+    If you want to run these files in a debugger I have instructions in this file for 
+    setting up DASM and Stella, alternatively you may use the online IDE from 8-bit
+    workshop.
+
+
 # Project Requirements:
 
     DASM - https://sourceforge.net/projects/dasm-dillon/
