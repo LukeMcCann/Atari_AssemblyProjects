@@ -10,6 +10,7 @@
     ORG $F000       ; Defines the origin of the ROM at $F000
 
 Start:
+                    ; Comment CLEAN_START out for a solid colour
     CLEAN_START     ; Macro to safely clear the memory registers/stack
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
