@@ -13,7 +13,7 @@ Start:
 ;; Start a new frame
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 NextFrame:
-    LDA #2                  ; binary #%00000010
+    LDA #%00000010          ; decimal #2
     STA  VBLANK             ; turn on VBLANK
     STA VSYNC               ; turn on VSYNC
 
