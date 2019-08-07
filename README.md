@@ -39,6 +39,11 @@ Download these notes to read them in the correct format.
     project, I have included the version of DASM (and a Stella.exe) in the 
     ProjectRelatedFiles folder read on for assistance in assembling 6502 assembly.
 
+# Project Spec:
+
+    This project utilises NTSC standards. This is due to the extended colour pallette compared to 
+    PAL standards, and also the fact I am using American emulators to run the programs. 
+
 # Alternative Methods:
 
     8-Bit Workshop Broswer-Based IDE - https://8bitworkshop.com/v3.3.0/?=&platform=vcs&file=examples%2Fhello
@@ -929,6 +934,49 @@ refer to it by.
 
 There is also a macro.h file which contains some useful macros
 to make building applications in assembly easier. 
+
+----------------------------------------------------
+
+# CRT Displays
+
+CRT monitors contain millions of tiny red, green and blue phosphor "dots" which glow when
+struck by an electron beam which travels accross the screen, creating a visible image.
+
+CRT displays had different standards accross the globe, utilising NTSC in the US and PAL standards
+in the UK. 
+
+The devices wihtin a CRT are controlled via the TIA (Television Interface Adapter). Different
+standards require independent TIA chips specifically created for that standard.
+
+The cathode creates an electron beam, when this beam touches the phosphor screen it illuminates
+in an RGB output. Modern computers instead store every pixel rendered in the display in memory
+before it is rendered (or even sent to the display). This was not possible in older configurations
+as devices such as the Atari had such limited memory capacity it was not possible to store every
+possible pixel configuration in memory.
+
+With CRT displays we work with the concept of scanlines. When we speak of scanlines, we are 
+referring to the action of the electron beam passing from left to right, this beam "paints" the picture on the display following TIA instruction. The TIA instructions need to be reprogrammed 
+every scanline. The TIA chip must be reprogrammed for each scanline we are drawing (this is known as racing the scanline).
+
+## Horizontal Blank
+
+The time it takes for the beam to travel to the right, deactivate and realign again back to the left
+and begin rendering again, this is known as the Horizontal blank and is around 68 colour clocks, derived from the fact we work with a 3.8Mhz clock in the TIA. Color clocks can be thought of as "pixels".
+
+The visible scanline is where our content is rendered, this is around 160 colour clocks. 
+
+To control when a scanline finishes the processor is halted until it receives a WSYNC signal from the 
+TIA. As when we send instructions to the TIA to render our content, the processor is never absolute (this is in the context that items may take more or less time), as such the TIA needs a way of telling the processor when it is done rendering the scanline. 
+
+The way the Atari does this, is that whenever the TIA hits a certain address in memory the processor is halted, waiting for the TIA to receive a WSYNC flag (Weight Synchronisation). Whenever we finish rendering our scanline the TIA releases the WSYNC allowing the processor to resume it's execution.
+
+## Vertical Synchronisation (VSYNC)
+
+NTSC standard displays utilise VSYNC, this is a time frame which is around 3 scanlines. 
+VSYNC tells the VCS when a frame starts and ends. Once the 3 scanlines are rendered there 
+is a space known as the vertical blank. This space is around 37 scanlines long, it acts as a buffer placed before the rendering of visible lines. 
+
+Visible scanlines after all of these fucntions are around 192 scanlines for the NTSC standard.
 
 ----------------------------------------------------
 
