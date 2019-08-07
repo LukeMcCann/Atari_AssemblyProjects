@@ -16,7 +16,7 @@
 Reset:
     CLEAN_START
     
-    LDX #$BE            ; set background colour (NTSC)
+    LDX #$C4            ; set background colour (NTSC)
     STX COLUBK
 
     LDA #$7E           ; set playfield colour
@@ -69,6 +69,63 @@ StartFrame:
     REPEAT 7
         STA WSYNC
     REPEND
+
+    ; Set PF0 to 1110 (LSB First) and PF1-PF2
+    LDX #%11100000
+    STX PF0
+
+    LDX #%11111111
+    STX PF1
+    STX PF2
+    REPEAT 7
+        STA WSYNC
+    REPEND
+
+    ; Set next 164 lines only with PF0
+
+    LDX #%00100000
+    STX PF0
+    LDX #0
+    STX PF1
+    STX PF2
+    REPEAT 164
+        STA WSYNC
+    REPEND
+
+    ; Set PF0 to 1110 (LSB first) and PF1 - PF2 as 1111 1111
+
+    LDX #%11100000
+    STX PF0
+
+    LDX #%11111111
+    STX PF1
+    STX PF2
+    REPEAT 7
+        STA WSYNC
+    REPEND
+
+    ; Skip 7 vertical lines with no PF set
+    LDX #0
+    STX PF0
+    STX PF1
+    STX PF2
+    REPEAT 7
+        STA WSYNC
+    REPEND
+
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; overscan 30 VBLANK scanlines
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+    LDA #02
+    STA VBLANK      ; VBLANK ON
+    REPEAT 30
+        STA WSYNC
+    REPEND
+
+    LDA #0
+    STA VBLANK      ; VBLANK OFF
+    
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Loop to next frame
