@@ -58,6 +58,7 @@ Download these notes to read them in the correct format.
 
     Munsie (DASM) - https://github.com/munsie/dasm
     Colour Palette - https://en.wikipedia.org/wiki/List_of_video_game_console_palettes
+    Interactive TIA Colour Palette - https://www.randomterrain.com/atari-2600-memories-tia-color-charts.html
 
 ---------------------------------------------------
 
