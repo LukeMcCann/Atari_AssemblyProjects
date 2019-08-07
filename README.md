@@ -21,7 +21,9 @@ Download these notes to read them in the correct format.
     The easiest method for running my 6502/6507 binaries is via the browser based Atari Emulator.
     (see Alternative methods - JavAtari).
 
-    Simply fork this project -> head over the the JavAtari URL -> select Open ROM File
+    First you will need to use DASM to compile the .asm files. 
+
+    Then, simply fork this project -> head over the the JavAtari URL -> select Open ROM File
     and select the binary you wish to run.
 
     If you want to run these files in a debugger I have instructions in this file for 
@@ -977,6 +979,8 @@ VSYNC tells the VCS when a frame starts and ends. Once the 3 scanlines are rende
 is a space known as the vertical blank. This space is around 37 scanlines long, it acts as a buffer placed before the rendering of visible lines. 
 
 Visible scanlines after all of these fucntions are around 192 scanlines for the NTSC standard.
+
+
 
 ----------------------------------------------------
 
