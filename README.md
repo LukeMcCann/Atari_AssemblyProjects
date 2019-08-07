@@ -109,7 +109,7 @@ Once unzipped you can run dasm from the command line or linux terminal:
 
     assemble the .asm files using dasm:
 
-        dasm file.asm -f3 -v0 -ofilename 
+        dasm file.asm -f3 -v0 -ofilename
 
     Note: if this results in an error it may be because you have added the .bin extension
     to get around this use the command as stated above and add the .bin extension afterwards.
