@@ -21,7 +21,10 @@ Download these notes to read them in the correct format.
     The easiest method for running my 6502/6507 binaries is via the browser based Atari Emulator.
     (see Alternative methods - JavAtari).
 
-    First you will need to use DASM to compile the .asm files. 
+    First, windows users will need to use DASM to compile the .asm files. 
+
+    (If you are on Linux you simply need to use the provided MakeFile after
+    installing DASM )
 
     Then, simply fork this project -> head over the the JavAtari URL -> select Open ROM File
     and select the binary you wish to run.
@@ -980,7 +983,11 @@ is a space known as the vertical blank. This space is around 37 scanlines long, 
 
 Visible scanlines after all of these fucntions are around 192 scanlines for the NTSC standard.
 
+Lastly we enable the Overscan. The overscan is 30 scanlines which are rendered before restarting
+the frame. There is a relationship between the CPU cycles and colour clocks.
 
+Overall the colour clocks add up to 228 which in turn is equivalent to 76 CPU cycles, equating 
+to an average of 3 colour clocks per CPU cycle.
 
 ----------------------------------------------------
 
