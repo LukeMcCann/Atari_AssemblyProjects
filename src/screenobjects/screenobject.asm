@@ -29,7 +29,7 @@ Reset:
     LDA #%1111      ; set playfield colour
     STA COLUPF
 
-    ; init unitialized variables
+    ; init unitialized
     LDA #10
     STA P0Height 
     STA P1Height
