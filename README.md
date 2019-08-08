@@ -16,7 +16,12 @@ Download these notes to read them in the correct format.
 
 ---------------------------------------------------
 
-# If You Want To Simply Run My Files
+# Easy Method to Run my code
+
+Go to - https://8bitworkshop.com/v3.3.0/?=&file=local%2Fcart.a&platform=vcs
+Paste the code from the .asm file you wish to view in the online IDE.
+
+# If You Want To Run My Files Locally
 
     The easiest method for running my 6502/6507 binaries is via the browser based Atari Emulator.
     (see Alternative methods - JavAtari).

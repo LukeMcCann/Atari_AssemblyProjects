@@ -15,7 +15,7 @@
 Reset:
     CLEAN_START
     
-    LDA #$80         ; set background colour
+    LDA #$0         ; set background colour
     STA COLUBK
 
     LDA #%1111          ; set playfield colour
@@ -24,12 +24,14 @@ Reset:
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Set te TIA registers for P0,P1 colour
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-    LDA #$48            ; P0 colour
+    LDA #$32            ; P0 colour
     STA COLUP0
 
-    LDA #$C6            ; P1 colour
+    LDA #$60            ; P1 colour
     STA COLUP1
 
+    LDY #%00000010      ; CTRLPF D1 set to 1 means (score)
+    STY CTRLPF
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Start a new frame
@@ -56,12 +58,6 @@ StartFrame:
 
     LDA #0 
     STA VBLANK          ; VBLANK OFF
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Set CTRLPF register
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-    ; set CTRLPF here
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Draw visible scanlines
