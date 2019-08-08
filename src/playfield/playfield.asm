@@ -81,13 +81,14 @@ StartFrame:
         STA WSYNC
     REPEND
 
-    ; Set next 164 lines only with PF0
+    ; Set next 164 lines
 
-    LDX #%00100000
+    LDX #%01100000
     STX PF0
+    LDX #%10000000
+    STX PF2
     LDX #0
     STX PF1
-    STX PF2
     REPEAT 164
         STA WSYNC
     REPEND
